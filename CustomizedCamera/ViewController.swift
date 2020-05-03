@@ -24,23 +24,18 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         setupCaptureSession()
-        setupDevice() { result in
-            if(result){
-                self.setupInputOutput()
-                self.setupPreviewLayer()
-                self.startRunningCaptureSession()
-                self.addBlur()
-            }
+        setupDevice()
+        setupInputOutput()
+        setupPreviewLayer()
+        startRunningCaptureSession()
+        addBlur()
         }
-        // Do any additional setup after loading the view.
-    }
 
     func setupCaptureSession() {
         captureSession.sessionPreset = AVCaptureSession.Preset.photo
-        print("Capture Setup")
     }
 
-    func setupDevice(completion: @escaping(Bool) -> ()) {
+    func setupDevice() {
         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
         let devices = deviceDiscoverySession.devices
         for device in devices {
@@ -53,8 +48,7 @@ class ViewController: UIViewController {
                 frontCamera = device
             }
         }
-        print("Device setup")
-        completion(true)
+
     }
 
     func setupInputOutput() {
@@ -65,7 +59,6 @@ class ViewController: UIViewController {
         } catch {
             print(error)
         }
-        print("setupInputOutput")
     }
 
     func setupPreviewLayer() {
@@ -74,7 +67,6 @@ class ViewController: UIViewController {
         cameraPreviewLayer?.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
         cameraPreviewLayer?.frame = self.view.frame
         self.view.layer.insertSublayer(cameraPreviewLayer! , at: 0)
-        print("Setup preview layer")
     }
 
     func startRunningCaptureSession() {
