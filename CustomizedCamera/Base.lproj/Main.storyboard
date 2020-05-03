@@ -11,36 +11,33 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CustomizedCamera" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" alpha="0.5" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pkM-ne-qEI">
-                                <rect key="frame" x="56.5" y="294.5" width="301" height="317"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PFP-co-EVF">
                                 <rect key="frame" x="162" y="712" width="91" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                <state key="normal" title="CLICK"/>
+                                <state key="normal" title="CLICK">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
                                 <connections>
                                     <action selector="ClickImageButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zkQ-84-LLW"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="heL-CJ-221">
+                                <rect key="frame" x="42" y="322.5" width="330" height="261"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="pkM-ne-qEI" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.727053" id="39T-PG-twm"/>
-                            <constraint firstItem="pkM-ne-qEI" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="3oG-6q-awW"/>
-                            <constraint firstItem="pkM-ne-qEI" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="4rp-i2-plc"/>
-                            <constraint firstItem="pkM-ne-qEI" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.353795" id="c1L-iy-fPc"/>
+                            <constraint firstItem="heL-CJ-221" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="07o-LF-HgV"/>
+                            <constraint firstItem="heL-CJ-221" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="6jk-gX-nWK"/>
+                            <constraint firstItem="heL-CJ-221" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.291295" id="QIL-FF-f9z"/>
+                            <constraint firstItem="heL-CJ-221" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.797101" id="ie3-mv-GAH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <connections>
-                        <outlet property="previewView" destination="pkM-ne-qEI" id="D4H-hu-2gt"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
