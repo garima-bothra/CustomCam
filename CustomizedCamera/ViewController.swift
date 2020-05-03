@@ -77,8 +77,9 @@ class ViewController: UIViewController {
     //Function to add Blur with custom mask
        func addBlur(){
            //MARK: Add Blur view
-           let blur = UIBlurEffect(style: .regular)
+        let blur = UIBlurEffect(style: .dark)
            let blurView = UIVisualEffectView(effect: blur)
+        blurView.alpha = 0.7
            blurView.frame = self.view.bounds
            blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
@@ -99,11 +100,11 @@ class ViewController: UIViewController {
     // Get mask size respect to screen size
        private func getMaskSize() -> CGRect {
            let viewWidth = view.frame.width
-           let rectwidth = viewWidth - 100
+           let rectwidth = viewWidth - 80
            let halfWidth = rectwidth/2
            let x = view.center.x - halfWidth
-           let y = view.center.y - halfWidth
-           return CGRect(x: x, y: y, width: rectwidth, height: rectwidth)
+           let y = view.center.y - 75
+           return CGRect(x: x, y: y, width: rectwidth, height: 150)
        }
 
     override func viewWillAppear(_ animated: Bool) {
