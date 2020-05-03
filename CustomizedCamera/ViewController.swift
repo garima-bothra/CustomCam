@@ -19,16 +19,17 @@ class ViewController: UIViewController {
     var photoOutput: AVCapturePhotoOutput?
     var cameraPreviewLayer: AVCaptureVideoPreviewLayer?
 
-    @IBOutlet weak var previewView: UIView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-       // self.view.layer.backgroundColor = UIColor.white.withAlphaComponent(0.5) as! CGColor
+
         setupCaptureSession()
         setupDevice() { result in
             if(result){
                 self.setupInputOutput()
                 self.setupPreviewLayer()
                 self.startRunningCaptureSession()
+                self.addBlur()
             }
         }
         // Do any additional setup after loading the view.
@@ -80,6 +81,38 @@ class ViewController: UIViewController {
         captureSession.startRunning()
 
     }
+
+    //Function to add Blur with custom mask
+       func addBlur(){
+           //MARK: Add Blur view
+           let blur = UIBlurEffect(style: .regular)
+           let blurView = UIVisualEffectView(effect: blur)
+           blurView.frame = self.view.bounds
+           blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
+           let scanLayer = CAShapeLayer()
+           let maskSize = getMaskSize()
+           let outerPath = UIBezierPath(roundedRect: maskSize, cornerRadius: 20)
+
+           // Add a mask
+           let superlayerPath = UIBezierPath(rect: blurView.frame)
+           outerPath.append(superlayerPath)
+           scanLayer.path = outerPath.cgPath
+           scanLayer.fillRule = .evenOdd
+
+           view.addSubview(blurView)
+           blurView.layer.mask = scanLayer
+       }
+
+    // Get mask size respect to screen size
+       private func getMaskSize() -> CGRect {
+           let viewWidth = view.frame.width
+           let rectwidth = viewWidth - 100
+           let halfWidth = rectwidth/2
+           let x = view.center.x - halfWidth
+           let y = view.center.y - halfWidth
+           return CGRect(x: x, y: y, width: rectwidth, height: rectwidth)
+       }
 
     override func viewWillAppear(_ animated: Bool) {
        super.viewWillAppear(animated)
